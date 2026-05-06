@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ─── Tailwind v4 Theme: Custom color palettes ───────────────────────────── */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+@theme {
+  /* Ink (dark cool blue-gray) */
+  --color-ink-950: #080b12;
+  --color-ink-900: #0c1018;
+  --color-ink-800: #141824;
+  --color-ink-700: #1e2535;
+  --color-ink-600: #2c3347;
+  --color-ink-500: #4a5270;
+  --color-ink-400: #6b7494;
+  --color-ink-300: #9da5b8;
+  --color-ink-200: #c8cdd9;
+  --color-ink-100: #e8eaf0;
+  --color-ink-50:  #f4f5f8;
+
+  /* Paper (warm off-white) */
+  --color-paper-950: #0f0e0c;
+  --color-paper-900: #1c1a17;
+  --color-paper-800: #2e2b25;
+  --color-paper-700: #4a4640;
+  --color-paper-600: #6b6560;
+  --color-paper-500: #8c8580;
+  --color-paper-400: #a8a29e;
+  --color-paper-300: #c5c0bb;
+  --color-paper-200: #dddad6;
+  --color-paper-100: #eeecea;
+  --color-paper-50:  #f7f6f3;
+
+  /* Fonts */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-eb-garamond);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #0c0f1a;
+  color: #e8eaf0;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+.font-display {
+  font-family: var(--font-eb-garamond), Georgia, 'Times New Roman', serif;
+}
+
+/* ─── Reduced Motion ─────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Focus ──────────────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2c3347;
+  border-radius: 3px;
 }
