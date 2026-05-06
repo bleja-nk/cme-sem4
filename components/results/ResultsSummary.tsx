@@ -6,6 +6,49 @@ import { STAKEHOLDERS } from '@/lib/scenario-data';
 import { ETHICS_VALUE_LABELS, ETHICS_VALUE_DESCRIPTIONS } from '@/lib/consequence-engine';
 import Link from 'next/link';
 
+const FURTHER_READING = [
+  {
+    authors: 'Seyyed-Kalantari, L. et al.',
+    year: '2021',
+    title: 'Underdiagnosis bias of artificial intelligence algorithms applied to chest radiographs in under-served patient populations',
+    journal: 'Nature Medicine, 27, 2176–2182',
+    url: 'https://www.nature.com/articles/s41591-021-01595-0',
+    annotation: 'Demonstrates how AI diagnostic tools systematically underdiagnose patients from marginalised groups, directly evidencing the bias shown in this simulation.',
+  },
+  {
+    authors: 'Char, D.S., Shah, N.H. & Magnus, D.',
+    year: '2018',
+    title: 'Implementing machine learning in health care — addressing ethical challenges',
+    journal: 'New England Journal of Medicine, 378, 981–983',
+    url: 'https://www.nejm.org/doi/10.1056/NEJMp1714229',
+    annotation: 'Outlines the core ethical tensions in deploying ML tools in clinical settings, including accountability gaps and informed consent failures.',
+  },
+  {
+    authors: 'Ghassemi, M. et al.',
+    year: '2024',
+    title: 'Study reveals why AI models that analyze medical images can be biased',
+    journal: 'MIT News',
+    url: 'https://news.mit.edu/2024/study-reveals-why-ai-analyzed-medical-images-can-be-biased-0628',
+    annotation: 'Explains the technical mechanisms behind racial bias in medical imaging AI, grounding the simulation\'s scenario in real research.',
+  },
+  {
+    authors: 'Rose, S.L. et al.',
+    year: '2024',
+    title: 'An ethically supported framework for determining patient notification and informed consent practices when using AI in health care',
+    journal: 'CHEST, 166(3), 572–578',
+    url: 'https://journal.chestnet.org/article/S0012-3692(24)00024-0/fulltext',
+    annotation: 'Directly addresses the consent gap at the centre of this simulation, proposing frameworks for when and how patients should be informed of AI involvement in their care.',
+  },
+  {
+    authors: 'Mennella, C. et al.',
+    year: '2024',
+    title: 'Ethical and regulatory challenges of AI technologies in healthcare: a narrative review',
+    journal: 'Heliyon, 10(4), e26297',
+    url: 'https://www.cell.com/heliyon/fulltext/S2405-8440(24)02793-3',
+    annotation: 'Provides a broad overview of the regulatory and ethical landscape for AI in healthcare, useful context for the policy decisions in steps 4–6.',
+  },
+];
+
 interface ResultsSummaryProps {
   summary: EndingSummary;
   onRestart: () => void;
@@ -369,6 +412,36 @@ export default function ResultsSummary({ summary, onRestart }: ResultsSummaryPro
               <p className="text-[#6b7494] font-display text-lg italic leading-7 max-w-lg mx-auto">
                 &ldquo;{summary.ethicsLens.overallReflection}&rdquo;
               </p>
+            </div>
+          </motion.section>
+
+          {/* Further Reading */}
+          <motion.section variants={prefersReducedMotion ? {} : ITEM}>
+            <p className="text-xs tracking-[0.15em] uppercase text-[#4a5270] font-sans mb-3">
+              Further Reading
+            </p>
+            <p className="text-[#4a5270] font-sans text-xs leading-5 mb-6">
+              The scenario in this simulation is fictional, but the patterns it reflects are real. These sources are a starting point for further exploration.
+            </p>
+            <div className="divide-y divide-[#1e2535]">
+              {FURTHER_READING.map((source, i) => (
+                <div key={i} className="py-5 first:pt-0 last:pb-0">
+                  <p className="text-[#4a5270] font-sans text-xs mb-1">
+                    {source.authors} ({source.year}) — <span className="text-[#2c3347]">{source.journal}</span>
+                  </p>
+                  <a
+                    href={source.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#7ba8cc] hover:text-[#93c5fd] font-sans text-sm leading-5 transition-colors duration-150 underline underline-offset-2 decoration-[#2c3347] hover:decoration-[#93c5fd]/40"
+                  >
+                    {source.title}
+                  </a>
+                  <p className="text-[#4a5270] font-sans text-xs leading-5 mt-1.5 italic">
+                    {source.annotation}
+                  </p>
+                </div>
+              ))}
             </div>
           </motion.section>
 
